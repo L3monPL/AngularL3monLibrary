@@ -4,5 +4,6 @@
 
 export * from './lib/l3mon-library.service';
 export * from './lib/l3mon-library.component';
-export * from './lib/l3l-button/l3l-button.module'
+
+export * from './lib/l3mon-library.module';
 export * from './lib/l3l-button/l3l-button.component'
