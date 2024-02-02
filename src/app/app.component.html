@@ -1,1 +1,14 @@
 <button l3lButton>test</button>
+<br>
+<div class="card">
+    <l3l-select (closeSelect)="closeSelect1()">
+        <div l3l-label>{{getSelectedItem()}}</div>
+        <div options>
+            @for (item of items; track $index) {
+                <div (click)="selectItem(item)" class="item">
+                    {{item.name}}
+                </div>
+            }
+        </div>
+    </l3l-select>
+</div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener } from '@angular/core';
 
 @Component({
   selector: 'button[l3lButton]',
@@ -9,5 +9,5 @@ import { Component, HostBinding } from '@angular/core';
 })
 export class L3lButtonComponent {
 
-
+  
 }

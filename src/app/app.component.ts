@@ -20,4 +20,34 @@ import { L3monLibraryModule } from '../../projects/l3mon-library/src/lib/l3mon-l
 })
 export class AppComponent {
   title = 'L3monLibraryProject';
+
+  items = [
+    {
+      id: 0,
+      name: 'answer 0'
+    },
+    {
+      id: 1,
+      name: 'answer 1'
+    },
+    {
+      id: 2,
+      name: 'answer 2'
+    },
+  ]
+
+  selectedItemId = 0
+
+  selectItem(item: any){
+    this.selectedItemId = item.id
+    this.closeSelect1()
+  }
+
+  getSelectedItem(){
+    return this.items.find(item => item.id == this.selectedItemId)?.name
+  }
+
+  closeSelect1(){
+    
+  }
 }
