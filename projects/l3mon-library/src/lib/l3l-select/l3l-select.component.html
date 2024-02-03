@@ -1,10 +1,10 @@
 <div class="select_container">
-    <div (click)="openSelect()" class="input_container">
+    <div (click)="openSelect()" #inputElement class="input_container">
         <ng-content select="[l3l-label]"></ng-content>
     </div>
     @if (openAbsoluteNgContent) {
         <div class="absolute_container">
-            <ng-content></ng-content>  
+            <ng-content select="[options]"></ng-content>  
         </div>
     }
 </div>

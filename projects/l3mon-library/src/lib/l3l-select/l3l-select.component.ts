@@ -1,15 +1,15 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
-export interface SelectObject{
-  selectedId: number,
-  deleteReplyButton: boolean,
-  // list: [
-  //   {
-  //     id: number,
-  //     name: string|number,
-  //     shortName?: string|number
-  //   }
-  // ]
+// export interface SelectObject{
+//   selectedId: number,
+//   deleteReplyButton: boolean
+// }
+export interface CustomStyle{
+  backgroundInput: string,
+  borderInput: string,
+  borderInputRadius: string,
+  backgroundOptions: string,
+  borderOptionsRadius: string
 }
 
 @Component({
@@ -18,28 +18,52 @@ export interface SelectObject{
   templateUrl: './l3l-select.component.html',
   styleUrl: './l3l-select.component.css'
 })
-export class L3lSelectComponent {
+export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
 
-  constructor(
-    private elementRef: ElementRef
-  ) { }
-
+  @Input() changeValue: any
+  @Input() customStyle?: CustomStyle = {
+    backgroundInput: '#fff',
+    borderInput: '1 px solid #000',
+    borderInputRadius: '6px',
+    backgroundOptions: '#ebebeb',
+    borderOptionsRadius: '6px'
+  }
 
   @HostListener('document:click', ['$event.target'])
   onClick(target: any): void {
     const clickedInside = this.elementRef.nativeElement.contains(target);
     if (!clickedInside) {
-      console.log('click outside')
       this.openAbsoluteNgContent = false
     }
   }
 
+  @ViewChild('inputElement') inputElement!: ElementRef;
+
+  constructor(
+    private elementRef: ElementRef
+  ) { }
+
+  ngAfterViewInit(): void {
+    this.setStyle()
+  }
+
+  ngOnInit(): void {
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['changeValue']) {
+      this.closeSelect() 
+    }
+  }
+
+
   // ----------------------------------------------- //
 
-  @Input() selectObject?: SelectObject = {
-    selectedId: 0,
-    deleteReplyButton: true
-  }
+  // @Input() selectObject?: SelectObject = {
+  //   selectedId: 0,
+  //   deleteReplyButton: true
+  // }
 
   openAbsoluteNgContent = false
 
@@ -49,7 +73,14 @@ export class L3lSelectComponent {
 
   closeSelect(){
     this.openAbsoluteNgContent = false
-    console.log('zamknij')
   }
+
+  // --------------------- STYLE -------------------------- //
+
+  setStyle(){
+    this.inputElement!.nativeElement.style.backgroundColor = this.customStyle?.backgroundInput
+  }
+
+  // --------------------- END STYLE ---------------------- //
   
 }
