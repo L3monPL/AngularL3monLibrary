@@ -61,8 +61,10 @@ export class AppComponent {
 
   setCustomStyle(){
     let style: CustomStyle = {
+      heightInput: '30px',
+      sideInputPadding: '0.5rem',
       backgroundInput: '#fff',
-      borderInput: '1 px solid #000',
+      borderInput: '1px solid #ccc',
       borderInputRadius: '6px',
       backgroundOptions: '#ebebeb',
       borderOptionsRadius: '6px'

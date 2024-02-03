@@ -5,6 +5,8 @@ import { AfterViewInit, Component, ElementRef, HostListener, Input, OnChanges, O
 //   deleteReplyButton: boolean
 // }
 export interface CustomStyle{
+  heightInput: string
+  sideInputPadding: string
   backgroundInput: string,
   borderInput: string,
   borderInputRadius: string,
@@ -22,8 +24,10 @@ export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
 
   @Input() changeValue: any
   @Input() customStyle?: CustomStyle = {
+    heightInput: '30px',
+    sideInputPadding: '0rem 0.5rem',
     backgroundInput: '#fff',
-    borderInput: '1 px solid #000',
+    borderInput: '1 px solid #ccc',
     borderInputRadius: '6px',
     backgroundOptions: '#ebebeb',
     borderOptionsRadius: '6px'
@@ -78,7 +82,12 @@ export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
   // --------------------- STYLE -------------------------- //
 
   setStyle(){
+    this.inputElement!.nativeElement.style.height = this.customStyle?.heightInput
+    this.inputElement!.nativeElement.style.paddingLeft  = this.customStyle?.sideInputPadding
+    this.inputElement!.nativeElement.style.paddingRight  = this.customStyle?.sideInputPadding
     this.inputElement!.nativeElement.style.backgroundColor = this.customStyle?.backgroundInput
+    this.inputElement!.nativeElement.style.border = this.customStyle?.borderInput
+    this.inputElement!.nativeElement.style.borderRadius  = this.customStyle?.borderInputRadius
   }
 
   // --------------------- END STYLE ---------------------- //
