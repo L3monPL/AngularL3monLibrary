@@ -1,24 +1,108 @@
-# L3monLibrary
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+# Angular L3mon UI Library
 
-## Code scaffolding
+Library includes:
 
-Run `ng generate component component-name --project l3monLibrary` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project l3monLibrary`.
-> Note: Don't forget to add `--project l3monLibrary` or else it will be added to the default project in your `angular.json` file. 
+- input - SELECT
 
-## Build
 
-Run `ng build l3monLibrary` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Get Started
 
-## Publishing
+#### Step 1: Install l3monLibrary: 
+#### NPM
 
-After building your library with `ng build l3monLibrary`, go to the dist folder `cd dist/l3mon-library` and run `npm publish`.
+```typescript
+npm i l3mon-library
+```
 
-## Running unit tests
+#### Step 2: Import the L3monLibraryModule
 
-Run `ng test l3monLibrary` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import { L3monLibraryModule } from 'l3mon-library';
 
-## Further help
+@NgModule({
+  declarations: [AppComponent],
+  imports: [L3monLibraryModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Usage: l3l-select
+#### In template use <l3l-select> component with your custom options
+
+```html
+<l3l-select [changeValue]="getSelectedItem()" [customStyle]="setCustomStyle()">
+    <div l3l-label>{{getSelectedItem()}}</div>
+    <div options>
+        @for (item of getItems(); track $index) {
+            <div (click)="selectItem(item)" class="item">
+                {{item.name}}
+            </div>
+        }
+    </div>
+</l3l-select>
+```
+
+#### Ts config
+
+```typescript
+@Component({...})
+export class ExampleComponent {
+
+    items = [
+    {
+      id: 0,
+      name: 'item 0'
+    },
+    {
+      id: 1,
+      name: 'item 1'
+    },
+    {
+      id: 2,
+      name: 'item 2'
+    }
+  ]
+
+  selectedItemId = 0
+
+  selectItem(item: any){
+    this.selectedItemId = item.id
+  }
+
+  getSelectedItem(){
+    return this.items.find(item => item.id == this.selectedItemId)?.name
+  }
+
+  getItems(){
+    return this.items.filter(item => item.id !== this.selectedItemId)
+  }
+
+  setCustomStyle(){
+    let style: CustomStyle = {
+      heightInput: '30px',
+      sideInputPadding: '0.5rem',
+      backgroundInput: '#fff',
+      borderInput: '1px solid #ccc',
+      borderInputRadius: '6px',
+      backgroundOptions: '#ebebeb',
+      borderOptionsRadius: '6px'
+    } 
+    return style
+  }
+}
+```
+
+## Features input - SELECT
+
+- custom creation of drop-down options
+- custom input look
+- custom look through prepared objects
+
+
+## Authors
+
+- [@L3monPL](https://github.com/L3monPL)
+
+

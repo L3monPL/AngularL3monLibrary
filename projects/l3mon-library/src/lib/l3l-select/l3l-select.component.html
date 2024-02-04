@@ -3,7 +3,7 @@
         <ng-content select="[l3l-label]"></ng-content>
     </div>
     @if (openAbsoluteNgContent) {
-        <div class="absolute_container">
+        <div [ngStyle]="this.absoluteElementStyles" class="absolute_container">
             <ng-content select="[options]"></ng-content>  
         </div>
     }

@@ -1,6 +1,6 @@
 {
   "name": "l3mon-library",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^17.1.0",
     "@angular/core": "^17.1.0"
@@ -8,5 +8,13 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "keywords": [
+    "angular 17",
+    "select",
+    "input",
+    "ui-select",
+    "dropdown"
+  ],
+  "license": "MIT"
 }

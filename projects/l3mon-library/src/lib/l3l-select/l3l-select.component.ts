@@ -41,7 +41,8 @@ export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
     }
   }
 
-  @ViewChild('inputElement') inputElement!: ElementRef;
+  @ViewChild('inputElement') inputElement!: ElementRef
+  // @ViewChild('absoluteElement') absoluteElement?: ElementRef
 
   constructor(
     private elementRef: ElementRef
@@ -64,11 +65,6 @@ export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
 
   // ----------------------------------------------- //
 
-  // @Input() selectObject?: SelectObject = {
-  //   selectedId: 0,
-  //   deleteReplyButton: true
-  // }
-
   openAbsoluteNgContent = false
 
   openSelect(){
@@ -81,6 +77,8 @@ export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
 
   // --------------------- STYLE -------------------------- //
 
+  absoluteElementStyles: any
+
   setStyle(){
     this.inputElement!.nativeElement.style.height = this.customStyle?.heightInput
     this.inputElement!.nativeElement.style.paddingLeft  = this.customStyle?.sideInputPadding
@@ -88,6 +86,17 @@ export class L3lSelectComponent implements OnChanges, OnInit, AfterViewInit{
     this.inputElement!.nativeElement.style.backgroundColor = this.customStyle?.backgroundInput
     this.inputElement!.nativeElement.style.border = this.customStyle?.borderInput
     this.inputElement!.nativeElement.style.borderRadius  = this.customStyle?.borderInputRadius
+
+    // -------------------------------------------------- //
+
+    const numbersArray = this.customStyle?.heightInput.match(/\d+/g)
+    let extractedNumber = Number(numbersArray![0])/2
+
+    this.absoluteElementStyles = {
+      'top': `${extractedNumber}px`,
+      'background-color': this.customStyle?.backgroundOptions,
+      'border-radius': this.customStyle?.borderOptionsRadius
+    };
   }
 
   // --------------------- END STYLE ---------------------- //
